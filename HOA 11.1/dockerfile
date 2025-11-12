@@ -1,0 +1,14 @@
+# Use Ubuntu as image
+FROM ubuntu:18.04
+
+LABEL maintainer="vboxuser <qcddsembrero@tip.edu.ph"
+
+RUN apt update -y && \
+    apt install -y nginx mariadb-server && \
+    apt clean 
+
+EXPOSE 80 3306
+
+# Start both services when container runs
+CMD service mysql start && nginx -g 'daemon off;'
+
